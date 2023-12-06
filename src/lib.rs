@@ -34,26 +34,26 @@ where
         let mut inter = None;
         let mut above = None;
         if self.start < other.start {
-            // below exists
+            // Below exists
             below = Some(self.start..self.end.min(other.start));
             if other.start < self.end && self.end <= other.end {
-                // inter but no above
+                // Inter, but no above
                 inter = Some(other.start..self.end);
             }
             if other.end < self.end {
-                // inter and above
+                // Inter and above
                 inter = Some(other.clone());
                 above = Some(other.end..self.end);
             }
         } else if other.contains(&self.start) {
-            // no below
+            // No below
             inter = Some(self.start..self.end.min(other.end));
             if other.end < self.end {
-                // also above
+                // Also above
                 above = Some(other.end..self.end);
             }
         } else {
-            // above only
+            // Above only
             above = Some(self.clone());
         }
 
@@ -104,15 +104,3 @@ mod tests {
         assert_eq!(C.split(&A), (None, None, Some(6..8)))
     }
 }
-
-/*
-assert_eq!(range_split(&a, &b), (Some(0..4), Some(4..5), None));
-        assert_eq!(range_split(&a, &c), (Some(0..5), None, None));
-        assert_eq!(range_split(&c, &b), (None, Some(6..8), None));
-        assert_eq!(range_split(&c, &a), (None, None, Some(6..8)));
-        assert_eq!(
-            range_split(&b, &c),
-            (Some(4..6), Some(6..8), Some(8..10))
-        );
-        assert_eq!(range_split(&b, &a), (None, Some(4..5), Some(5..10)))
-*/
