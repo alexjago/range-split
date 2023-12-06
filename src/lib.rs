@@ -1,3 +1,6 @@
+// Copyright 2023 Alex Jago <abjago.net>
+// Released under the MIT or Apache-2.0 licenses, at your option.
+
 use core::ops::Range;
 
 /** A trait for splitting [`Range`]s and maybe other things too.
